@@ -195,19 +195,19 @@ def executer_requete_groq_avec_rotation(
 # =============================================================================
 BASE_CONNAISSANCES_SAVIO = {
     "📐 Mathématiques | 💻 NSI | 🧪 Physique-Chimie": {
-        "contexte": "Référentiel ONISEP/Parcoursup : Option scientifique et technologique d'excellence. La spécialité NSI s'associe aux Mathématiques et à la Physique pour créer le profil de l'ingénierie moderne, du développement logiciel de haut niveau et de la recherche en informatique.",
+        "contexte": "Référentiel ONISEP/Parcoursup : Option scientifique et technologique d'excellence. La spécialité NSI s'associe aux Mathématiques et à la Physique pour créer le profil de l'[...]
         "debouches": ["Écoles d'Ingénieurs (CPGE ou Post-Bac)", "Licence Informatique / Data Science", "BUT Réseaux et Télécommunications"]
     },
     "📐 Mathématiques | 💻 NSI | 📈 SES": {
-        "contexte": "Référentiel AEFE/Savio : Profil interdisciplinaire axé sur l'économie quantitative, les sciences de données de masse (Big Data), l'actuariat et la modélisation statistique des faits macro-économiques.",
+        "contexte": "Référentiel AEFE/Savio : Profil interdisciplinaire axé sur l'économie quantitative, les sciences de données de masse (Big Data), l'actuariat et la modélisation statistique d[...]
         "debouches": ["Licence Économie-Gestion / MIASHS", "BUT Statistique et Décisionnel", "Écoles de Commerce (Filières de finance quantitative)"]
     },
     "📐 Mathématiques | 💻 NSI | 🌍 AMC": {
-        "contexte": "Référentiel Interne Savio : Alliance de la programmation technique et de l'ouverture internationale bilingue via l'Anglais Monde Contemporain (AMC). Prépare aux carrières mondiales du numérique.",
+        "contexte": "Référentiel Interne Savio : Alliance de la programmation technique et de l'ouverture internationale bilingue via l'Anglais Monde Contemporain (AMC). Prépare aux carrières mond[...]
         "debouches": ["Bachelors en Informatique internationaux", "Cursus d'ingénierie bilingues", "Métiers de la Cybersécurité internationale"]
     },
     "📐 Mathématiques | 🧪 Physique-Chimie | 🌿 SVT": {
-        "contexte": "Référentiel National ONISEP : Combinaison scientifique classique, indispensable pour l'accès aux études de recherche fondamentale, la modélisation de la matière et la compréhension des systèmes biologiques.",
+        "contexte": "Référentiel National ONISEP : Combinaison scientifique classique, indispensable pour l'accès aux études de recherche fondamentale, la modélisation de la matière et la compr[...]
         "debouches": ["Études médicales (PASS / L.AS)", "Classes Préparatoires BCPST / PCSI", "Licences de Sciences de la Vie / Recherche"]
     },
     "📐 Mathématiques | 🧪 Physique-Chimie | 📈 SES": {
@@ -219,7 +219,7 @@ BASE_CONNAISSANCES_SAVIO = {
         "debouches": ["Licences de Sciences Physiques", "Écoles d'Ingénieurs internationales", "Filières technologiques à l'étranger"]
     },
     "📜 HLP | 🗺️ HGEOSP | 🔤 LLCE": {
-        "contexte": "Référentiel ONISEP/Humanités : Profil littéraire, historique et linguistique complet. Humanités, Littérature et Philosophie (HLP) s'articule avec l'Histoire-Géographie, Géopolitique et Sciences Politiques (HGGSP) et les Langues (LLCE).",
+        "contexte": "Référentiel ONISEP/Humanités : Profil littéraire, historique et linguistique complet. Humanités, Littérature et Philosophie (HLP) s'articule avec l'Histoire-Géographie, Gé[...]
         "debouches": ["Licences de Lettres / Sciences du Langage", "Écoles de Journalisme", "Sciences Po / Instituts d'Études Politiques"]
     },
     "📈 SES | 🔤 LLCE | 📜 HLP": {
@@ -239,7 +239,7 @@ BASE_CONNAISSANCES_SAVIO = {
         "debouches": ["Écoles de Commerce International", "Licences d'Éco-Gestion", "Classes Préparatoires ECG"]
     },
     "📊 Sciences de gestion et numérique | 💼 Management | ⚖️ Droit et économie": {
-        "contexte": "Référentiel National STMG (Lycée Savio) : Parcours technologique d'excellence centré sur le fonctionnement concret, juridique, fiscal et financier des organisations, des entreprises et des administrations publiques.",
+        "contexte": "Référentiel National STMG (Lycée Savio) : Parcours technologique d'excellence centré sur le fonctionnement concret, juridique, fiscal et financier des organisations, des entre[...]
         "debouches": ["BUT Gestion des Entreprises (GEA)", "Classes Préparatoires ECT", "Licences Professionnelles de Management"]
     }
 }
@@ -273,19 +273,21 @@ if "bilan_prio_affiche" not in st.session_state:
     st.session_state.bilan_prio_affiche = False
 if "derniere_latence" not in st.session_state:
     st.session_state.derniere_latence = 0.0
+if "reponse_generee" not in st.session_state:
+    st.session_state.reponse_generee = False
 
 # Les 10 questions réglementaires d'exploration anonyme
 QUESTIONS_RIASEC = [
-    {"titre": "### Question 1/10 : Dans un projet de groupe au lycée, quelle mission te correspond le mieux ?", "choix": [{"texte": "🔧 Configurer le matériel informatique ou coder un script", "profil": "R"}, {"texte": "🔬 Analyser les données scientifiques et chercher une explication logique", "profil": "I"}, {"texte": "🎨 Rédiger le texte de présentation de manière originale", "profil": "A"}, {"texte": "📢 Prendre le leadership, manager l'équipe et pitcher le projet", "profil": "E"}]},
-    {"titre": "### Question 2/10 : Quelle activité te donne le plus d'énergie ?", "choix": [{"texte": "🤝 Expliquer une notion et aider un camarade", "profil": "S"}, {"texte": "📊 Organiser des informations avec méthode", "profil": "C"}, {"texte": "🧪 Réaliser une expérience pour comprendre un phénomène", "profil": "I"}, {"texte": "🎭 Imaginer une création originale", "profil": "A"}]},
-    {"titre": "### Question 3/10 : Pour un nouveau projet, tu préfères...", "choix": [{"texte": "🛠️ Fabriquer et tester un prototype", "profil": "R"}, {"texte": "🧠 Résoudre un problème complexe", "profil": "I"}, {"texte": "📣 Convaincre et coordonner une équipe", "profil": "E"}, {"texte": "✍️ Raconter une idée de façon personnelle", "profil": "A"}]},
-    {"titre": "### Question 4/10 : Face à un problème, tu commences par...", "choix": [{"texte": "🔩 Chercher une solution pratique et immédiatement testable", "profil": "R"}, {"texte": "🔎 Formuler des hypothèses et examiner les preuves", "profil": "I"}, {"texte": "💬 Demander l'avis des personnes concernées", "profil": "S"}, {"texte": "📋 Décomposer le problème en étapes précises", "profil": "C"}]},
-    {"titre": "### Question 5/10 : Dans une activité scolaire, tu aimerais surtout...", "choix": [{"texte": "🌍 Défendre une idée qui te tient à cœur", "profil": "E"}, {"texte": "🎼 Créer une production qui te ressemble", "profil": "A"}, {"texte": "🧪 Comprendre le fonctionnement d'un phénomène", "profil": "I"}, {"texte": "🛠️ Utiliser des outils et des matériaux concrets", "profil": "R"}]},
-    {"titre": "### Question 6/10 : Quel rôle prends-tu naturellement dans un groupe ?", "choix": [{"texte": "🗣️ Encourager les autres et faciliter les échanges", "profil": "S"}, {"texte": "📅 Planifier le travail et suivre les consignes", "profil": "C"}, {"texte": "🚀 Proposer une direction et motiver l'équipe", "profil": "E"}, {"texte": "💡 Trouver une approche nouvelle et originale", "profil": "A"}]},
-    {"titre": "### Question 7/10 : Quel résultat te rendrait le plus fier ?", "choix": [{"texte": "⚙️ Un objet ou un système qui fonctionne réellement", "profil": "R"}, {"texte": "📐 Une démonstration logique et rigoureuse", "profil": "I"}, {"texte": "🤲 Une personne que tu as aidée à progresser", "profil": "S"}, {"texte": "📈 Un projet réussi grâce à ta capacité à convaincre", "profil": "E"}]},
-    {"titre": "### Question 8/10 : Quelle tâche acceptes-tu volontiers ?", "choix": [{"texte": "📚 Lire, comparer et synthétiser plusieurs sources", "profil": "I"}, {"texte": "🗂️ Classer des documents et vérifier les détails", "profil": "C"}, {"texte": "🎬 Écrire, dessiner ou mettre en scène une idée", "profil": "A"}, {"texte": "🤝 Écouter quelqu'un et l'aider à trouver une solution", "profil": "S"}]},
-    {"titre": "### Question 9/10 : Quel environnement de travail te convient le mieux ?", "choix": [{"texte": "🏗️ Un atelier, un laboratoire technique ou un espace de fabrication", "profil": "R"}, {"texte": "💻 Un espace calme pour analyser et expérimenter", "profil": "I"}, {"texte": "🌐 Un environnement ouvert sur les échanges et les projets", "profil": "E"}, {"texte": "📝 Un cadre organisé avec des règles et des objectifs clairs", "profil": "C"}]},
-    {"titre": "### Question 10/10 : Pour choisir une orientation, tu accordes le plus d'importance à...", "choix": [{"texte": "🎨 La possibilité d'exprimer ta créativité", "profil": "A"}, {"texte": "👥 L'utilité sociale et le contact humain", "profil": "S"}, {"texte": "📊 Les résultats mesurables et les perspectives d'évolution", "profil": "E"}, {"texte": "🧮 La précision, la logique et la maîtrise des méthodes", "profil": "C"}]},
+    {"titre": "### Question 1/10 : Dans un projet de groupe au lycée, quelle mission te correspond le mieux ?", "choix": [{"texte": "🔧 Configurer le matériel informatique ou coder un script", "profil": "R"}, {"texte": "🧪 Concevoir et tester une expérience", "profil": "I"}, {"texte": "🎨 Créer un design ou des visuels", "profil": "A"}, {"texte": "🤝 Expliquer une notion et aider un camarade", "profil": "S"}, {"texte": "🌍 Défendre une idée devant les autres", "profil": "E"}, {"texte": "📊 Organiser les tâches et les délais", "profil": "C"}]},
+    {"titre": "### Question 2/10 : Quelle activité te donne le plus d'énergie ?", "choix": [{"texte": "🤝 Expliquer une notion et aider un camarade", "profil": "S"}, {"texte": "📊 Organiser des données ou des objets", "profil": "C"}, {"texte": "🛠️ Réparer ou fabriquer quelque chose", "profil": "R"}, {"texte": "📚 Chercher des informations et apprendre", "profil": "I"}, {"texte": "🎨 Créer quelque chose de nouveau", "profil": "A"}, {"texte": "🗣️ Convaincre ou négocier avec d'autres", "profil": "E"}]},
+    {"titre": "### Question 3/10 : Pour un nouveau projet, tu préfères...", "choix": [{"texte": "🛠️ Fabriquer et tester un prototype", "profil": "R"}, {"texte": "🧠 Résoudre un problème complexe", "profil": "I"}, {"texte": "🎼 Créer quelque chose d'artistique", "profil": "A"}, {"texte": "👥 Travailler en équipe et échanger", "profil": "S"}, {"texte": "🎯 Atteindre un objectif précis", "profil": "E"}, {"texte": "📋 Planifier et organiser étape par étape", "profil": "C"}]},
+    {"titre": "### Question 4/10 : Face à un problème, tu commences par...", "choix": [{"texte": "🔩 Chercher une solution pratique et immédiatement testable", "profil": "R"}, {"texte": "🔎 Fouiller dans les causes pour bien comprendre", "profil": "I"}, {"texte": "✨ Imaginer plusieurs approches créatives", "profil": "A"}, {"texte": "🤝 Demander l'avis de quelqu'un de confiance", "profil": "S"}, {"texte": "💪 Prendre les choses en main rapidement", "profil": "E"}, {"texte": "📝 Faire une liste des étapes à suivre", "profil": "C"}]},
+    {"titre": "### Question 5/10 : Dans une activité scolaire, tu aimerais surtout...", "choix": [{"texte": "🌍 Défendre une idée qui te tient à cœur", "profil": "E"}, {"texte": "🎼 Créer un projet original et personnel", "profil": "A"}, {"texte": "⚙️ Fabriquer un objet ou un système", "profil": "R"}, {"texte": "📚 Découvrir comment les choses fonctionnent", "profil": "I"}, {"texte": "💬 Discuter et écouter tes camarades", "profil": "S"}, {"texte": "🎯 Obtenir les meilleurs résultats possibles", "profil": "C"}]},
+    {"titre": "### Question 6/10 : Quel rôle prends-tu naturellement dans un groupe ?", "choix": [{"texte": "🗣️ Encourager les autres et faciliter les échanges", "profil": "S"}, {"texte": "📅 Organiser le travail et vérifier le respect des délais", "profil": "C"}, {"texte": "🔧 Proposer des solutions pratiques et fonctionnelles", "profil": "R"}, {"texte": "💡 Apporter des idées originales et nouvelles", "profil": "A"}, {"texte": "🧠 Analyser en profondeur et poser les bonnes questions", "profil": "I"}, {"texte": "🎤 Prendre la parole et motiver le groupe", "profil": "E"}]},
+    {"titre": "### Question 7/10 : Quel résultat te rendrait le plus fier ?", "choix": [{"texte": "⚙️ Un objet ou un système qui fonctionne réellement", "profil": "R"}, {"texte": "📐 Une démonstration logique et élégante", "profil": "I"}, {"texte": "🎨 Une création personnelle et originale", "profil": "A"}, {"texte": "🤝 Une bonne ambiance et une solidarité d'équipe", "profil": "S"}, {"texte": "🏆 Avoir atteint mon objectif et surpassé les autres", "profil": "E"}, {"texte": "✅ Un travail parfaitement structuré et sans erreurs", "profil": "C"}]},
+    {"titre": "### Question 8/10 : Quelle tâche acceptes-tu volontiers ?", "choix": [{"texte": "📚 Lire, comparer et synthétiser plusieurs sources", "profil": "I"}, {"texte": "🗂️ Classer des données ou organiser un système", "profil": "C"}, {"texte": "🛠️ Manipuler, construire ou réparer un objet", "profil": "R"}, {"texte": "🎨 Dessiner, illustrer ou créer des visuels", "profil": "A"}, {"texte": "💬 Écouter quelqu'un qui a un problème", "profil": "S"}, {"texte": "📢 Présenter ton travail ou tes idées à un public", "profil": "E"}]},
+    {"titre": "### Question 9/10 : Quel environnement de travail te convient le mieux ?", "choix": [{"texte": "🏗️ Un atelier, un laboratoire technique ou un espace de fabrication", "profil": "R"}, {"texte": "📖 Une bibliothèque calme pour réfléchir et analyser", "profil": "I"}, {"texte": "🎭 Un studio créatif avec du matériel artistique", "profil": "A"}, {"texte": "👫 Un espace collaboratif pour travailler avec d'autres", "profil": "S"}, {"texte": "🏢 Un bureau moderne avec des projets stimulants", "profil": "E"}, {"texte": "📋 Un espace bien organisé avec des processus clairs", "profil": "C"}]},
+    {"titre": "### Question 10/10 : Pour choisir une orientation, tu accordes le plus d'importance à...", "choix": [{"texte": "🎨 La possibilité d'exprimer ta créativité", "profil": "A"}, {"texte": "🧠 Comprendre les phénomènes et les concepts", "profil": "I"}, {"texte": "⚙️ Fabriquer ou transformer des choses concrètes", "profil": "R"}, {"texte": "👥 Aider les autres et contribuer à la société", "profil": "S"}, {"texte": "💼 Réussir professionnellement et bien gagner ta vie", "profil": "E"}, {"texte": "✅ Avoir une carrière stable et prévisible", "profil": "C"}]}
 ]
 
 
@@ -314,6 +316,7 @@ def reinitialiser_session():
     st.session_state.nombre_questions_eleve = 0
     st.session_state.rappel_prio_affiche = False
     st.session_state.bilan_prio_affiche = False
+    st.session_state.reponse_generee = False
     st.session_state.questions_aleatoires = creer_questionnaire_aleatoire()
 
 
@@ -619,7 +622,7 @@ elif st.session_state.step == "RESULTAT":
                     question_eleve,
                     [
                         {"role": message["role"], "content": message["content"]}
-                        for message in st.session_state.historique_discussion[-9:-1]
+                        for message in st.session_state.historique_discussion[:-1]
                     ],
                     max_tokens=900 if bilan_final or st.session_state.nombre_questions_eleve >= 8 else 400,
             )
@@ -642,4 +645,5 @@ elif st.session_state.step == "RESULTAT":
         st.session_state.historique_discussion.append(
             {"role": "assistant", "content": terminer_texte(reponse)}
         )
+        st.session_state.reponse_generee = True
         st.rerun()
