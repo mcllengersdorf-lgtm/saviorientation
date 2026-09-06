@@ -195,52 +195,52 @@ def executer_requete_groq_avec_rotation(
 # =============================================================================
 BASE_CONNAISSANCES_SAVIO = {
     "📐 Mathématiques | 💻 NSI | 🧪 Physique-Chimie": {
-        "contexte": "Référentiel ONISEP/Parcoursup : Option scientifique et technologique d'excellence. La spécialité NSI s'associe aux Mathématiques et à la Physique pour créer le profil [...]
+        "contexte": "Référentiel ONISEP/Parcoursup : Option scientifique et technologique d'excellence.",
         "debouches": ["Écoles d'Ingénieurs (CPGE ou Post-Bac)", "Licence Informatique / Data Science", "BUT Réseaux et Télécommunications"]
     },
     "📐 Mathématiques | 💻 NSI | 📈 SES": {
-        "contexte": "Référentiel AEFE/Savio : Profil interdisciplinaire axé sur l'économie quantitative, les sciences de données de masse (Big Data), l'actuariat et la modélisation statisti[...]
-        "debouches": ["Licence Économie-Gestion / MIASHS", "BUT Statistique et Décisionnel", "Écoles de Commerce (Filières de finance quantitative)"]
+        "contexte": "Référentiel AEFE/Savio : Profil interdisciplinaire axé sur l'économie quantitative.",
+        "debouches": ["Licence Économie-Gestion / MIASHS", "BUT Statistique et Décisionnel", "Écoles de Commerce"]
     },
     "📐 Mathématiques | 💻 NSI | 🌍 AMC": {
-        "contexte": "Référentiel Interne Savio : Alliance de la programmation technique et de l'ouverture internationale bilingue via l'Anglais Monde Contemporain (AMC). Prépare aux carrières[...]
-        "debouches": ["Bachelors en Informatique internationaux", "Cursus d'ingénierie bilingues", "Métiers de la Cybersécurité internationale"]
+        "contexte": "Référentiel Interne Savio : Alliance de la programmation technique et l'ouverture internationale.",
+        "debouches": ["Bachelors en Informatique internationaux", "Cursus d'ingénierie bilingues", "Métiers de la Cybersécurité"]
     },
     "📐 Mathématiques | 🧪 Physique-Chimie | 🌿 SVT": {
-        "contexte": "Référentiel National ONISEP : Combinaison scientifique classique, indispensable pour l'accès aux études de recherche fondamentale, la modélisation de la matière et la c[...]
-        "debouches": ["Études médicales (PASS / L.AS)", "Classes Préparatoires BCPST / PCSI", "Licences de Sciences de la Vie / Recherche"]
+        "contexte": "Référentiel National ONISEP : Combinaison scientifique classique.",
+        "debouches": ["Études médicales (PASS / L.AS)", "Classes Préparatoires BCPST / PCSI", "Licences de Sciences de la Vie"]
     },
     "📐 Mathématiques | 🧪 Physique-Chimie | 📈 SES": {
-        "contexte": "Référentiel AEFE : Parcours d'équilibre entre la rigueur cartésienne des sciences dures et les mécanismes économiques macro et micro-structurels.",
-        "debouches": ["Classes Préparatoires Commerciales (ECG)", "Licence Éco-Gestion", "Filières universitaires de statistiques de marché"]
+        "contexte": "Référentiel AEFE : Parcours d'équilibre entre sciences dures et économie.",
+        "debouches": ["Classes Préparatoires Commerciales (ECG)", "Licence Éco-Gestion", "Statistiques de marché"]
     },
     "📐 Mathématiques | 🧪 Physique-Chimie | 🌍 AMC": {
-        "contexte": "Référentiel Savio : Profil de recherche ouvert aux publications internationales scientifiques et à l'ingénierie aéronautique ou énergétique mondiale.",
-        "debouches": ["Licences de Sciences Physiques", "Écoles d'Ingénieurs internationales", "Filières technologiques à l'étranger"]
+        "contexte": "Référentiel Savio : Profil de recherche et ingénierie mondiale.",
+        "debouches": ["Licences de Sciences Physiques", "Écoles d'Ingénieurs internationales", "Filières technologiques"]
     },
     "📜 HLP | 🗺️ HGEOSP | 🔤 LLCE": {
-        "contexte": "Référentiel ONISEP/Humanités : Profil littéraire, historique et linguistique complet. Humanités, Littérature et Philosophie (HLP) s'articule avec l'Histoire-Géographie[...]
-        "debouches": ["Licences de Lettres / Sciences du Langage", "Écoles de Journalisme", "Sciences Po / Instituts d'Études Politiques"]
+        "contexte": "Référentiel ONISEP/Humanités : Profil littéraire et linguistique.",
+        "debouches": ["Licences de Lettres / Sciences du Langage", "Écoles de Journalisme", "Sciences Po"]
     },
     "📈 SES | 🔤 LLCE | 📜 HLP": {
-        "contexte": "Référentiel AEFE : Profil hybride croisant la culture philosophique avec les sciences économiques et la maîtrise des langues étrangères.",
-        "debouches": ["Licences de Sciences Sociales / Humanités", "Filières de Communication internationale", "Métiers de la Médiation Culturelle"]
+        "contexte": "Référentiel AEFE : Profil hybride philosophique et économique.",
+        "debouches": ["Licences de Sciences Sociales", "Communication internationale", "Médiation Culturelle"]
     },
     "📜 HLP | 🗺️ HGEOSP | 📐 Mathématiques": {
-        "contexte": "Référentiel Savio : Combinaison hautement équilibrée associant l'esprit critique philosophique à la logique d'analyse mathématique pure.",
-        "debouches": ["Classes Préparatoires BL (Lettres et Sciences Sociales)", "Licence de Droit / Sciences Politiques", "Métiers du Conseil"]
+        "contexte": "Référentiel Savio : Combinaison équilibrée critique et analyse.",
+        "debouches": ["Classes Préparatoires BL", "Licence de Droit / Sciences Politiques", "Métiers du Conseil"]
     },
     "📈 SES | 🔤 LLCE | 🗺️ HGEOSP": {
-        "contexte": "Référentiel ONISEP : Idéal pour analyser les enjeux contemporains, les relations internationales, la sociologie et la gouvernance globale.",
-        "debouches": ["Sciences Po / IEP", "Facultés de Droit", "Écoles de Management et Commerce International"]
+        "contexte": "Référentiel ONISEP : Idéal pour enjeux contemporains et internationaux.",
+        "debouches": ["Sciences Po / IEP", "Facultés de Droit", "Management international"]
     },
     "📈 SES | 🔤 LLCE | 📐 Mathématiques": {
-        "contexte": "Référentiel AEFE : Profil d'excellence managériale globale, mêlant l'économie, la négociation internationale et les outils quantitatifs mathématiques.",
+        "contexte": "Référentiel AEFE : Profil managérial global.",
         "debouches": ["Écoles de Commerce International", "Licences d'Éco-Gestion", "Classes Préparatoires ECG"]
     },
     "📊 Sciences de gestion et numérique | 💼 Management | ⚖️ Droit et économie": {
-        "contexte": "Référentiel National STMG (Lycée Savio) : Parcours technologique d'excellence centré sur le fonctionnement concret, juridique, fiscal et financier des organisations, des [...]
-        "debouches": ["BUT Gestion des Entreprises (GEA)", "Classes Préparatoires ECT", "Licences Professionnelles de Management"]
+        "contexte": "Référentiel National STMG (Lycée Savio) : Parcours technologique d'excellence.",
+        "debouches": ["BUT Gestion des Entreprises (GEA)", "Classes Préparatoires ECT", "Licences Professionnelles"]
     }
 }
 
